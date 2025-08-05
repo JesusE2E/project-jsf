@@ -8,7 +8,17 @@
 
 <h:body>
 
-	<h:outputLabel value="Bienvenido al login"></h:outputLabel>
+
+	<h:form id="formLogin">
+		<h:panelGrid columns="2">
+			<h:outputLabel value="usuario"></h:outputLabel>
+			<h:inputText value="#{logingController.usuario}"></h:inputText>
+			<h:outputLabel value="contraseña"></h:outputLabel>
+			<h:inputSecret value="#{logingController.password}"></h:inputSecret>
+			<h:commandButton value="Entrar" action="#{logingController.ingresar}"></h:commandButton>
+		</h:panelGrid>
+
+	</h:form>
 
 </h:body>
 
