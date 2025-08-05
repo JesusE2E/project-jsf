@@ -2,6 +2,7 @@ package com.jesus.projectjsf.controllers;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /*Clase que permite controlar el funcionamiento
@@ -30,14 +31,22 @@ public class LogingController {
 		
 		// validar las credenciales 
 		if(usuario.equals("jesus")&&(password.equals("123"))) {
-			FacesContext.getCurrentInstance().addMessage("formLogin:idUsuario", new FacesMessage(FacesMessage.SEVERITY_INFO, "usuario correcto", ""));
-			
+			//FacesContext.getCurrentInstance().addMessage("formLogin:idUsuario", new FacesMessage(FacesMessage.SEVERITY_INFO, "usuario correcto", ""));
+			redirigir("principal.xhtml");
 		}else {
 			FacesContext.getCurrentInstance().addMessage("formLoging:idUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuario o pasword incorrectos", ""));
 			
 		}
 	}
 	
+	private void redirigir(String pagina) {
+		try {
+		ExternalContext ec =FacesContext.getCurrentInstance().getExternalContext();
+		ec.redirect(pagina);
+		}catch(Exception e) {
+	    FacesContext.getCurrentInstance().addMessage("formLoging:idUsuario", new FacesMessage(FacesMessage.SEVERITY_FATAL,"La pagina no existe", ""));
+		}
+	}
 	
 	
 	
